@@ -1,0 +1,43 @@
+<h2> Create Stock Form</h2>
+<div class="form-group">
+  <form (ngSubmit)= "createStock()">
+    <div>
+      The following element changes from green to pink when it is invalad
+    </div>
+    <div class= "stock-name">
+      <input type="text"
+        placeholder="Stock Name"
+        required
+        name="stockName"
+        [(ngModel)]="stock.name">
+    </div> <!-- banana-in-a-box_[]box()_banana_syntax -->
+    <div class="stock-code">
+      <input type="text" placeholder= "Stock code"
+        name="stockCode" [(ngModel)]= "stock.code">
+    </div>
+    <div class="stock-price">
+      <input type="number" placeholder= "Stock price"
+        name="stockPrice" [ngModel]= "stock.price"
+        (ngModelChange)= "setStockPrice($event)">
+    </div>
+    <div class= "stock-exchange">
+      <select name="StockExchange" [(ngModel)]="stock.exchange">
+        <option *ngFor= "let exchange of exchanges"
+          [ngValue]= "exchange">{{exchange}}</option>
+      
+      </select>
+    </div>
+    <div class="stock-confirm">
+      <input type="checkbox" name="stockConfirm"
+      [(ngModel)]="confirmed">
+      I confirm that the information provided above is accurate!
+    </div>
+    <button [disabled]="!confirmed" type="submit">Create</button>
+  </form>
+  <button (click)="stock.name='test'"> Reset stock name </button>
+</div>
+
+<h4>
+  <p>Stock Name is {{stock | json}}</p>
+  <p> Data has been confirmed: {{confirmed}}</p>
+</h4>
